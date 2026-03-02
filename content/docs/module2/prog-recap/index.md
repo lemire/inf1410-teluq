@@ -227,7 +227,7 @@ langage C, comment écrit-on un `dict` Python, en C? Il existe plusieurs manièr
 de le faire, mais l'une d'elles est [table de
 hachage](https://fr.wikipedia.org/wiki/Table_de_hachage) (hash table en
 anglais). En gros, l'idée est d'appliquer une [fonction de
-hachage](docs/module3/versioning/#fonction-de-hachage) à un élément (la clé), ce
+hachage](docs/module2/versioning/#fonction-de-hachage) à un élément (la clé), ce
 qui permet de déterminer l'index dans un tableau, où on pourra mettre la valeur
 associée. Dans certaines implémentations, il est nécessaire de gérer les
 collisions possibles : si deux clés mènent au même index par exemple, il sera
