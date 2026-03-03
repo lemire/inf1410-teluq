@@ -1,6 +1,6 @@
 ---
 title: "Principes généraux fameux"
-weight: 20
+weight: 10
 ---
 
 # Quelques principes généraux fameux en développement logiciel

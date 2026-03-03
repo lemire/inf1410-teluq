@@ -507,3 +507,7 @@ Les échecs :
 Et finalement, le jeu de Sudoku :
 
 {{< image src="sudoku.png" alt="" title="" loading="lazy" >}}
+
+## Les types
+
+TODO

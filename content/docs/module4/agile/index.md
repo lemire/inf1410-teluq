@@ -1,6 +1,6 @@
 ---
 title: "Le manifeste Agile"
-weight: 10
+weight: 20
 ---
 
 # La manifeste Agile

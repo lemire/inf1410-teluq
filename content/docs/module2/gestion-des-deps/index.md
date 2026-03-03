@@ -1,6 +1,6 @@
 ---
 title: "La gestion des dépendances"
-weight: 30
+weight: 40
 ---
 
 # La gestion des dépendances

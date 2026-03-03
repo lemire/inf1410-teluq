@@ -1,6 +1,6 @@
 ---
 title: "Git distribué (GitHub)"
-weight: 30
+weight: 10
 ---
 
 # Au-delà du git local : git distribué
