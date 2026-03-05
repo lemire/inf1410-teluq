@@ -1,14 +1,15 @@
 # Module 1 — Le génie logiciel
 
-## Qu'est-ce que le GL?
+## Quelques livres et articles fameux
 
-## Quelques livres fameux
 - The Mythical Man-Month
 - The Pragmatic Programmer
 - Clean Code
 - Design Patterns
 - Phoenix Project
 - Refactoring (?)
+- Article : Peter Naur: Programming as Theory Building
+- Fred Brooks : no silver bullet
 
 ## Histoire du GL
 
@@ -55,11 +56,15 @@
 ### Les années 20 : l'ère de l'IA
 - LLM
 
-# Module 2 — La programmation
+# Module 2 - Concevoir un logiciel correct
 
-## Structures de données et algorithmique
-- Types de base
-- Complexité algorithmique de base
+- Structures de données, complexité algorithmiques de base, types
+- Versioning
+- Les tests
+- Gestion des dépendances
+- Intégration continue (CI)
+
+# Module 3 - Évolution du logiciel
 
 ## Principes importants et fameux
 - Principe DRY
@@ -75,125 +80,37 @@
   - Un composant doit se comporter comme on s’y attend
   - Une fonction `calculateTotal()` ne devrait pas aussi envoyer un courriel
 
-## Paradigmes
-- Programmation orientée objet (OOP)
-- Programmation fonctionnelle
+- Architecture
+- Modularité
+- API
+- Données
+- Couplage
+- Patterns
+- Dette technique
 
-## Design patterns
-- Gang of Four
+# Module 4 - Construire en équipe
 
-## Principes architecturaux
-- Architecture en couches (N-tier)
-- Architecture hexagonale
-- Microservices vs monolithe
-- Serverless
-
-## Web & API
-- HTTP
-- JSON, REST, GraphQL
-- Modèles de sécurité et d’authentification (OAuth, JWT, etc.)
-
-## Testing
-- Pourquoi les tests?
-- Types de tests et pyramide des tests
-- Qualités d’un bon test :
-  - rapide
-  - déterministe
-  - isolé
-  - répétable
-- Mocking
-- Tests de régression, TDD
-
-## Interfaces graphiques (UI)
-- Programmation événementielle
-- DOM et arbre de vues
-- Web vs desktop
-- MVC
-- Principes d’IHM (HCI)
-- UI déclarative vs impérative
-- Gestion de l’état
-- Notions de *flow* et de *least friction* (bonne UI)
-
-## Programmation parallèle et asynchrone
-- Modèles mentaux : CPU-bound vs IO-bound
-- Event loop
-- Promises et futures
-- Async / await
-- Threads vs processus
-- Problèmes classiques (deadlocks, etc.)
-
-## Documentation
-- Documentation du code
-- Documentation d’API
-- README, changelogs, etc.
-- Modèles de données
-
-## Design by contract
-
-# Module 3 — Les outils et les environnements
-
-## Git et le contrôle de versions
-- Problème du versioning
-- Historique
-- Opérations de base
-- Branching et merging
-- Collaboration distante
-- Bonnes pratiques
-
-## IDEs et éditeurs
-- IDE vs éditeurs
-- Analyse statique, linting
-- Navigation dans le code
-- Refactoring
-- Debugging
-- Extensions
-
-## Gestion des dépendances
-- Dependency hell
-- Builds reproductibles
-- Artifacts vs sources
-- Gestionnaires système vs gestionnaires de langage
-- SemVer
-- Manifests et lockfiles
-- Sécurité et licences
-- Vendoring
-
-## DevOps
-- CI/CD
-- Containers
-- Infrastructure as Code
-- Observabilité et monitoring
-- Shift Left
-
-## Assistance par l’IA
-- Coding agents
-- MCP
-
-# Module 4 — La gestion de projet et la collaboration
+- Git distribué (github)
 - Agile
-  - Scrum
-  - Kanban
-  - Extreme Programming
+- Kanban
+- Scrum
+- Communication (importance d'outils comme Slack, etc).
+- Estimation
+- Coordination
+
+# Module 5 - Faire vivre le logiciel
+
+- Cloud
 - DevOps
-- Code reviews (GitHub, etc.)
-- Tech writing
-- Documentation
-- Recueil des besoins
-- Peter Naur: Programming as Theory Building
+- Observabilité
+- Monitoring
+- Logging
+- Sécurité
+- Scalabilité
 
-# Module 5 — Les données
-- Designing Data-Intensive Applications, 2nd Edition
-- SQL
-- SQL vs NoSQL
-- Intégrité et normalisation
-- ORM
-- Transactions
-- Big data et ML
-- Web sémantique
-- Caching
+# Module 6 - Au-delà du logiciel
 
-# Module 6 — L'infonuagique
-
-- Modèles de service (IaaS, PaaS, SaaS, Serverless)
-- Grands fournisseurs (AWS, Azure, GCP)
-- Haute disponibilité et scalabilité
+- Open source
+- AI-assisted dev
+- Économie du logiciel
+- Plateformes (iOS, Android, etc)
