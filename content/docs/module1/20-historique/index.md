@@ -296,6 +296,28 @@ contournements de limitations spécifiques à certains langages.
 
 {{< image src="james-gosling.jpg" alt="" title="" loading="lazy" >}}
 
+En 1991, **Guido van Rossum** publie la première version de **Python**, un
+langage qui prend le contre-pied de la verbosité de Java. La philosophie de
+Python, résumée dans le « Zen of Python », tient en quelques principes : la
+lisibilité compte, il devrait y avoir une façon évidente de faire les choses, et
+le simple vaut mieux que le complexe :
+
+```python
+def factorielle(n):
+    if n <= 1:
+        return 1
+    return n * factorielle(n - 1)
+```
+
+Comparé à la même fonction en Java, qui exigerait une classe, une méthode
+statique et des déclarations de types, la concision de Python est frappante. Ce
+choix de design n'est pas qu'esthétique : en réduisant le « bruit syntaxique »,
+Python permet au programmeur de se concentrer sur le problème plutôt que sur le
+langage. D'abord populaire comme outil de script et d'enseignement, Python
+deviendra au fil des décennies l'un des langages les plus utilisés au monde,
+porté notamment par l'essor de la science des données et de l'apprentissage
+automatique.
+
 Le **Unified Modeling Language** (UML), standardisé en 1997, représente l'apogée
 de l'approche « concevoir d'abord, coder ensuite ». UML propose une notation
 graphique élaborée pour modéliser les systèmes logiciels : diagrammes de

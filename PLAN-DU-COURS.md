@@ -41,6 +41,7 @@
 - Web (Tim Berners-Lee)
 - JavaScript
 - Java
+- Python (Guido van Rossum)
 - Open source, Linux (Linus Torvalds)
 - Design patterns (Gang of Four)
 - UML
@@ -69,10 +70,11 @@
 - *Programming as Theory Building* (Peter Naur) : programmer comme construction d'une théorie / d'un modèle mental
 - Fil conducteur du module : les outils pour formaliser, vérifier et préserver cette théorie
 
-## Survol rapide de la programmation (~95% complété)
+## Survol rapide de la programmation (complété)
 - Structures de données (listes, ensembles, dictionnaires)
 - Complexité algorithmique (Big O, Two Sum, recherche binaire)
-- Types (à développer) : statique vs dynamique, strong vs weak, lien avec les schémas
+- Types : compilé vs interprété, statique vs dynamique, fort vs faible,
+  type hints Python/mypy, lien avec les schémas JSON et SQL
 
 ## Les tests (à développer)
 - Pourquoi tester (coût des bugs, confiance dans le code)
