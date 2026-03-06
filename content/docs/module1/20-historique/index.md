@@ -318,6 +318,8 @@ deviendra au fil des décennies l'un des langages les plus utilisés au monde,
 porté notamment par l'essor de la science des données et de l'apprentissage
 automatique.
 
+{{< image src="guido.jpg" alt="" title="" loading="lazy" >}}
+
 Le **Unified Modeling Language** (UML), standardisé en 1997, représente l'apogée
 de l'approche « concevoir d'abord, coder ensuite ». UML propose une notation
 graphique élaborée pour modéliser les systèmes logiciels : diagrammes de
