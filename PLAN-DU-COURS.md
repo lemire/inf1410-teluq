@@ -66,7 +66,7 @@
 
 # Module 2 - Concevoir un logiciel correct
 
-## Introduction (à développer)
+## Introduction (complété)
 - *Programming as Theory Building* (Peter Naur) : programmer comme construction d'une théorie / d'un modèle mental
 - Fil conducteur du module : les outils pour formaliser, vérifier et préserver cette théorie
 
