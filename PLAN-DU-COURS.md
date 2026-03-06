@@ -76,13 +76,15 @@
 - Types : compilé vs interprété, statique vs dynamique, fort vs faible,
   type hints Python/mypy, lien avec les schémas JSON et SQL
 
-## Les tests (à développer)
-- Pourquoi tester (coût des bugs, confiance dans le code)
+## Les tests (complété)
+- Pourquoi tester : confronter le modèle mental (Naur) à la réalité
+- Tests comme substitut partiel au compilateur en Python
+- Le mécanisme de base : `assert`
 - Pyramide des tests : unitaires, d'intégration, end-to-end
-- pytest comme outil concret
-- TDD (Test-Driven Development)
-- Coverage et ses limites
-- Property-based testing (hypothesis)
+- pytest comme framework de test
+- TDD (Test-Driven Development) : cycle Red-Green-Refactor (Kent Beck)
+- Coverage (coverage.py, pytest-cov) et ses limites
+- Property-based testing (Hypothesis) et lien avec le fuzzing
 
 ## Le versioning avec git (complété)
 - Problème fondamental du changement

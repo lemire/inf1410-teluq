@@ -75,6 +75,24 @@ Même sans connaître COBOL, on peut voir l'ambition de rendre le code lisible p
 des non-programmeurs, une préoccupation qui reviendra régulièrement dans
 l'histoire du génie logiciel.
 
+Fait remarquable, COBOL est encore utilisé de nos jours dans de nombreux
+systèmes critiques, en particulier dans le secteur bancaire et les
+administrations publiques. On estime que des milliards de lignes de COBOL sont
+encore en production à travers le monde, traitant quotidiennement des
+transactions financières massives. Ces systèmes, souvent qualifiés de
+« legacy », posent des défis considérables : les programmeurs qui les maîtrisent
+partent à la retraite, la documentation est parfois inexistante, et personne
+n'ose réécrire un système qui fonctionne depuis quarante ans, de peur
+d'introduire des erreurs dans des processus critiques. Le « bogue de l'an
+2000 » (Y2K) a mis en lumière cette fragilité de façon spectaculaire : pour
+économiser de la mémoire, les programmeurs COBOL des années 1960 et 1970 avaient
+encodé les années sur deux chiffres seulement, et l'arrivée de l'an 2000
+menaçait de faire interpréter « 00 » comme 1900 plutôt que 2000. Des
+gouvernements et des entreprises à travers le monde ont dépensé des centaines de
+milliards de dollars pour corriger ces systèmes à temps. Ce phénomène illustre
+une tension fondamentale du génie logiciel : un logiciel qui « fonctionne » peut
+devenir un piège si personne ne comprend plus comment ni pourquoi il fonctionne.
+
 Cette période voit aussi naître les premiers systèmes d'exploitation, qui
 commencent à gérer les ressources matérielles et à offrir une couche
 d'abstraction entre le matériel et les programmes. Les projets logiciels restent
