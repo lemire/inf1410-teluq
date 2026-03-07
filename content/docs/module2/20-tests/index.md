@@ -324,6 +324,315 @@ résultats sont bons. La couverture est un indicateur utile pour repérer du cod
 non testé, mais elle ne remplace pas la réflexion sur la qualité des tests
 eux-mêmes.
 
+## Les fixtures
+
+Jusqu'ici, nos tests étaient autonomes : chaque fonction de test créait ses
+propres données et n'avait besoin de rien d'autre. Mais dans un projet réel,
+plusieurs tests ont souvent besoin du même contexte initial : une connexion à une
+base de données, un fichier temporaire, un objet configuré d'une certaine
+manière. Sans mécanisme dédié, on se retrouve à copier-coller le même code de
+préparation dans chaque test, ce qui viole le principe DRY et rend la suite de
+tests fragile : si le setup doit changer, il faut le modifier partout.
+
+Prenons un exemple. Supposons qu'on teste une classe simple `Inventaire` qui
+gère une liste de produits :
+
+```python
+# inventaire.py
+class Inventaire:
+    def __init__(self):
+        self.produits = {}
+
+    def ajouter(self, nom, quantite):
+        self.produits[nom] = self.produits.get(nom, 0) + quantite
+
+    def total(self):
+        return sum(self.produits.values())
+
+    def contient(self, nom):
+        return nom in self.produits
+```
+
+Sans fixtures, chaque test doit créer et remplir son propre inventaire :
+
+```python
+# test_inventaire.py
+from inventaire import Inventaire
+
+def test_ajouter():
+    inv = Inventaire()
+    inv.ajouter("pommes", 5)
+    inv.ajouter("bananes", 3)
+    assert inv.produits["pommes"] == 5
+
+def test_total():
+    inv = Inventaire()
+    inv.ajouter("pommes", 5)
+    inv.ajouter("bananes", 3)
+    assert inv.total() == 8
+
+def test_contient():
+    inv = Inventaire()
+    inv.ajouter("pommes", 5)
+    inv.ajouter("bananes", 3)
+    assert inv.contient("pommes")
+    assert not inv.contient("oranges")
+```
+
+Les trois premières lignes de chaque test sont identiques. Avec trois tests,
+c'est tolérable; avec trente, ça devient un problème de maintenance.
+
+pytest résout ce problème avec les *fixtures* : des fonctions marquées par le
+décorateur `@pytest.fixture`, qui préparent un contexte réutilisable. Pour
+injecter une fixture dans un test, il suffit de la nommer comme paramètre de la
+fonction de test. pytest se charge de l'appeler automatiquement et de passer le
+résultat :
+
+```python
+# test_inventaire.py
+import pytest
+from inventaire import Inventaire
+
+@pytest.fixture
+def inventaire_garni():
+    inv = Inventaire()
+    inv.ajouter("pommes", 5)
+    inv.ajouter("bananes", 3)
+    return inv
+
+def test_ajouter(inventaire_garni):
+    assert inventaire_garni.produits["pommes"] == 5
+
+def test_total(inventaire_garni):
+    assert inventaire_garni.total() == 8
+
+def test_contient(inventaire_garni):
+    assert inventaire_garni.contient("pommes")
+    assert not inventaire_garni.contient("oranges")
+```
+
+Le code de préparation n'existe plus qu'à un seul endroit. Si on veut changer
+les données initiales, on modifie la fixture et tous les tests en bénéficient.
+
+Un détail important : par défaut, pytest appelle la fixture *à nouveau* pour
+chaque test qui l'utilise. Chaque test reçoit donc sa propre instance fraîche de
+l'inventaire. Cela garantit que les tests sont isolés les uns des autres : si un
+test modifie l'inventaire (par exemple en ajoutant un produit), cette
+modification n'affecte pas les autres tests. C'est un principe fondamental en
+testing : chaque test doit pouvoir s'exécuter indépendamment, dans n'importe
+quel ordre, sans effet de bord.
+
+Ce comportement correspond au scope `"function"`, qui est le scope par défaut.
+Mais pytest offre d'autres scopes qui contrôlent la durée de vie d'une fixture :
+
+- `"function"` (par défaut) : la fixture est recréée pour chaque test
+- `"module"` : la fixture est créée une seule fois par fichier de test, puis
+  partagée entre tous les tests de ce fichier
+- `"session"` : la fixture est créée une seule fois pour l'ensemble de la suite
+  de tests
+
+```python
+@pytest.fixture(scope="session")
+def connexion_db():
+    conn = creer_connexion("test.db")
+    return conn
+```
+
+Les scopes plus larges sont utiles pour des ressources coûteuses à créer, comme
+une connexion à une base de données. Mais ils introduisent un compromis : les
+tests qui partagent une fixture ne sont plus complètement isolés. Il faut donc
+les utiliser avec discernement.
+
+Certaines fixtures doivent non seulement préparer un contexte, mais aussi le
+nettoyer après le test. Par exemple, si une fixture crée un fichier temporaire,
+on veut s'assurer que ce fichier est supprimé une fois le test terminé, peu
+importe si le test a réussi ou échoué. pytest permet cela en utilisant `yield`
+au lieu de `return` dans la fixture : le code avant `yield` s'exécute avant le
+test, et le code après `yield` s'exécute après.
+
+```python
+import pytest
+import os
+
+@pytest.fixture
+def fichier_temp():
+    # Setup : créer le fichier
+    chemin = "donnees_test.txt"
+    with open(chemin, "w") as f:
+        f.write("contenu de test")
+    yield chemin
+    # Teardown : nettoyer après le test
+    os.remove(chemin)
+
+def test_lecture(fichier_temp):
+    with open(fichier_temp) as f:
+        assert f.read() == "contenu de test"
+    # Même si le test échoue, le fichier sera supprimé
+```
+
+Ce mécanisme de setup/teardown garantit que les tests ne laissent pas de traces
+derrière eux, ce qui est particulièrement important quand on manipule des
+fichiers, des connexions réseau ou des bases de données.
+
+Quand un projet grandit, les tests sont naturellement répartis dans plusieurs
+fichiers. Si plusieurs de ces fichiers ont besoin de la même fixture, on
+pourrait la copier dans chaque fichier, mais on retomberait dans le problème de
+duplication qu'on cherchait justement à éviter. pytest offre une solution
+élégante : le fichier `conftest.py`. Toute fixture définie dans un fichier
+`conftest.py` est automatiquement disponible pour tous les fichiers de test du
+même répertoire (et de ses sous-répertoires), sans aucun import explicite.
+
+```
+projet/
+├── conftest.py           # fixtures partagées
+├── test_inventaire.py
+├── test_commandes.py
+└── test_livraisons.py
+```
+
+```python
+# conftest.py
+import pytest
+from inventaire import Inventaire
+
+@pytest.fixture
+def inventaire_garni():
+    inv = Inventaire()
+    inv.ajouter("pommes", 5)
+    inv.ajouter("bananes", 3)
+    return inv
+```
+
+Les trois fichiers de test peuvent maintenant utiliser `inventaire_garni` comme
+paramètre de leurs fonctions de test, sans l'importer. pytest découvre le
+`conftest.py` automatiquement et injecte les fixtures qu'il contient. On peut
+aussi avoir plusieurs `conftest.py` à différents niveaux de l'arborescence :
+chacun rend ses fixtures disponibles pour son répertoire et ses
+sous-répertoires.
+
+## Le mocking
+
+Les fixtures résolvent le problème de la préparation répétitive des données de
+test. Mais il reste un autre défi, plus subtil : comment tester du code qui
+dépend de ressources externes? Une fonction qui appelle une API web, qui lit un
+fichier de configuration, qui interroge une base de données ou qui vérifie
+l'heure actuelle pose un problème fondamental pour les tests unitaires : on veut
+tester la logique de *notre* code, pas le comportement du réseau, du système de
+fichiers ou de l'horloge système. De plus, ces dépendances rendent les tests
+lents, imprévisibles et difficiles à reproduire.
+
+Le *mocking* (de l'anglais *mock*, « imitation ») consiste à remplacer
+temporairement une dépendance réelle par un faux objet au comportement contrôlé.
+Au lieu d'appeler véritablement une API, le test substitue un faux qui retourne
+toujours la même réponse prédéfinie. Cela permet d'isoler le code qu'on teste et
+de vérifier sa logique indépendamment du monde extérieur.
+
+Prenons un exemple. Supposons qu'on ait une fonction qui récupère la météo d'une
+ville via une API web :
+
+```python
+# meteo.py
+import requests
+
+def obtenir_temperature(ville):
+    reponse = requests.get(f"https://api.meteo.example/ville/{ville}")
+    donnees = reponse.json()
+    return donnees["temperature"]
+
+def message_meteo(ville):
+    temp = obtenir_temperature(ville)
+    if temp > 30:
+        return f"Il fait chaud à {ville} ({temp}°C)"
+    elif temp < 0:
+        return f"Il fait froid à {ville} ({temp}°C)"
+    else:
+        return f"Température normale à {ville} ({temp}°C)"
+```
+
+On veut tester la logique de `message_meteo` : est-ce qu'elle produit le bon
+message selon la température? Mais si on l'appelle directement dans un test,
+elle va réellement contacter l'API, ce qui pose plusieurs problèmes : le test
+nécessite une connexion internet, il est lent, et surtout, la température réelle
+change constamment, ce qui rend le résultat imprévisible. On ne peut pas écrire
+`assert message_meteo("Montréal") == "Il fait froid..."` si on ne contrôle pas
+la température retournée.
+
+pytest fournit une fixture intégrée appelée `monkeypatch` qui permet de
+remplacer temporairement n'importe quel attribut, fonction ou variable
+d'environnement pendant un test. Le remplacement est automatiquement annulé à la
+fin du test, ce qui garantit l'isolation. Pour notre exemple, on peut utiliser
+`monkeypatch.setattr` pour remplacer la fonction `obtenir_temperature` par une
+fausse version qui retourne une valeur fixe :
+
+```python
+# test_meteo.py
+from meteo import message_meteo
+import meteo
+
+def test_message_chaud(monkeypatch):
+    monkeypatch.setattr(meteo, "obtenir_temperature", lambda ville: 35)
+    assert message_meteo("Montréal") == "Il fait chaud à Montréal (35°C)"
+
+def test_message_froid(monkeypatch):
+    monkeypatch.setattr(meteo, "obtenir_temperature", lambda ville: -10)
+    assert message_meteo("Montréal") == "Il fait froid à Montréal (-10°C)"
+
+def test_message_normal(monkeypatch):
+    monkeypatch.setattr(meteo, "obtenir_temperature", lambda ville: 20)
+    assert message_meteo("Montréal") == "Température normale à Montréal (20°C)"
+```
+
+Aucun de ces tests ne contacte l'API. La fonction `obtenir_temperature` est
+remplacée par un simple `lambda` (une fonction anonyme en Python, c'est-à-dire
+une fonction définie en une seule ligne sans lui donner de nom :
+`lambda ville: 35` est équivalent à écrire une fonction qui prend `ville` en
+paramètre et retourne toujours 35) qui retourne la valeur qu'on veut tester. On
+peut ainsi vérifier chaque branche de la logique de `message_meteo` de manière
+déterministe et instantanée.
+
+`monkeypatch` ne se limite pas au remplacement de fonctions. On peut aussi
+l'utiliser pour simuler des variables d'environnement, ce qui est courant dans
+les applications qui lisent leur configuration depuis l'environnement :
+
+```python
+# config.py
+import os
+
+def obtenir_mode():
+    mode = os.environ.get("APP_MODE", "production")
+    if mode == "debug":
+        return "Mode débogage activé"
+    return "Mode production"
+```
+
+```python
+# test_config.py
+from config import obtenir_mode
+
+def test_mode_debug(monkeypatch):
+    monkeypatch.setenv("APP_MODE", "debug")
+    assert obtenir_mode() == "Mode débogage activé"
+
+def test_mode_production(monkeypatch):
+    monkeypatch.delenv("APP_MODE", raising=False)
+    assert obtenir_mode() == "Mode production"
+```
+
+`monkeypatch.setenv` définit une variable d'environnement pour la durée du test,
+et `monkeypatch.delenv` la supprime. Dans les deux cas, l'état original est
+restauré automatiquement après le test.
+
+`monkeypatch` est l'outil de mocking le plus naturel dans l'écosystème pytest,
+grâce à sa simplicité et son intégration comme fixture. Mais il n'est pas le
+seul : la bibliothèque standard de Python inclut le module `unittest.mock`, qui
+offre des fonctionnalités plus avancées. Son objet `Mock` peut enregistrer
+comment il a été appelé (combien de fois, avec quels arguments), ce qui permet
+de vérifier non seulement le résultat d'une fonction, mais aussi son
+*comportement* : a-t-elle bien appelé telle dépendance, avec les bons
+paramètres? Ces vérifications comportementales sont utiles dans des cas plus
+complexes, mais pour la majorité des tests unitaires, `monkeypatch` est
+amplement suffisant.
+
 ## Le property-based testing
 
 Dans tous les exemples vus jusqu'ici, nous avons écrit des tests avec des valeurs

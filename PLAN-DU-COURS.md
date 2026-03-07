@@ -84,6 +84,8 @@
 - pytest comme framework de test
 - TDD (Test-Driven Development) : cycle Red-Green-Refactor (Kent Beck)
 - Coverage (coverage.py, pytest-cov) et ses limites
+- Fixtures : `@pytest.fixture`, scopes, yield/teardown, `conftest.py`
+- Mocking : `monkeypatch` (setattr, setenv/delenv), mention de `unittest.mock`
 - Property-based testing (Hypothesis) et lien avec le fuzzing
 
 ## Le versioning avec git (complété)
