@@ -157,6 +157,41 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Design d’API
 - Lien avec les schémas (JSON Schema, OpenAPI, Protobuf)
 
+## Les interfaces utilisateur (à développer)
+
+### Perspective historique
+- Les terminaux texte et les interfaces en ligne de commande (CLI)
+- Xerox PARC, Smalltalk et la naissance du GUI (années 70-80)
+- Le modèle événementiel : de la boucle d'événements aux callbacks
+- MVC (Reenskaug, 1979) : origine dans Smalltalk, renvoi vers la section architecture
+- Les toolkits desktop : Tk, Qt, GTK, Win32, Cocoa
+- Le web comme plateforme UI : du document statique à l'application
+
+### L'architecture des applications web
+- Le modèle traditionnel : rendu côté serveur (SSR), pages complètes, formulaires
+- AJAX (2005) et le tournant vers l'interactivité sans rechargement
+- Single Page Application (SPA) : principe, avantages, inconvénients
+- Le retour du SSR : Next.js, Nuxt, SvelteKit, approches hybrides (SSR + hydration)
+- Static Site Generation (SSG) et sites Jamstack
+
+### Les frameworks JavaScript
+- jQuery (2006) : simplification du DOM, uniformisation des navigateurs
+- Angular (2010/2016) : framework complet, two-way data binding, TypeScript
+- React (2013, Facebook) : DOM virtuel, composants, flux de données unidirectionnel, JSX
+- Vue.js (2014, Evan You) : approche progressive, réactivité, templates
+- Svelte (2016, Rich Harris) : compilation, disparition du framework au runtime
+- Concepts transversaux : composants, état (state management), réactivité, routing côté client
+
+### Desktop, web et mobile : tensions et convergences
+- Applications desktop natives : performance, accès système, distribution complexe
+- Applications web : universalité, déploiement instantané, limitations (accès hardware)
+- Applications mobiles natives (iOS/Swift, Android/Kotlin) : écosystèmes fermés, app stores
+- Approches cross-platform : React Native, Flutter (Dart), .NET MAUI
+- Progressive Web Apps (PWA) : service workers, installation, mode hors-ligne
+- Responsive design et l'adaptation aux formats d'écran
+- Electron et Tauri : le web comme runtime desktop
+- La tension fondamentale : write once run anywhere vs expérience native optimale
+
 ## Les données (en cours)
 
 ### La représentation des données (complété)
