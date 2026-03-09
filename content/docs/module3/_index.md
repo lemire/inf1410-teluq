@@ -8,12 +8,12 @@ bookCollapseSection: true
 
 Dans le module précédent, on s'est concentré sur les outils du programmeur
 individuel : les types, les tests, git, les dépendances, l'intégration continue.
-Ces outils permettent de construire et de vérifier un programme correct. Mais un
-logiciel réel n'est presque jamais un programme unique. C'est un ensemble de
-composants qui interagissent : une base de données, une API, un système de
-cache, une file de messages, des services qui communiquent entre eux. Le passage
-du programme au système est l'un des sauts conceptuels les plus importants en
-génie logiciel, et c'est le sujet de ce module.
+Ces outils permettent de construire et de vérifier si un programme est correct
+ou non. Mais un logiciel réel n'est presque jamais un programme simple. C'est un
+ensemble de composants qui interagissent : une base de données, une API, un
+système de cache, une file de messages, des services qui communiquent entre eux.
+Le passage du programme au système est l'un des sauts conceptuels les plus
+importants en génie logiciel, et c'est le sujet de ce module.
 
 En 1986, Fred Brooks publie son célèbre essai *No Silver Bullet*, dans lequel il
 distingue deux types de difficulté en développement logiciel. La difficulté

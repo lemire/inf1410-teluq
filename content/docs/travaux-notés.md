@@ -57,4 +57,7 @@ Voici les livrables que vous devrez être en mesure de remettre à la fin du cou
    l'évolution de votre travail et de vos efforts
 5. Un document qui expliquera votre modèle de données et les choix de conception qui y sont reliés
 6. Un lien vers votre application 100% fonctionnelle, disponible en ligne
-6. Un journal de bord qui détaillera l'historique complet de vos processus, sous la forme d'entrées datées
+6. Un journal de bord qui détaillera l'historique complet de vos processus, sous
+   la forme d'entrées datées; vos décisions et votre réflexion devront faire
+   explicitement référence au contenu du cours, et expliquer en quoi elles sont
+   justifiées
