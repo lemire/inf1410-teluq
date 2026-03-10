@@ -181,17 +181,24 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Lien avec DRY : le schéma comme source unique de vérité
 - Lien avec la section sur les schémas (module 3, données)
 
-## Les interfaces utilisateur (à développer)
+## Les interfaces utilisateur (en cours)
 
-### Perspective historique
+### Perspective historique (complété)
 - Les terminaux texte et les interfaces en ligne de commande (CLI)
+  - Teletypes (TTY), terminaux vidéo (VT100), shells (Bourne Shell, Bash, Zsh, PowerShell)
+  - Puissance de composition de la CLI, lien avec pipes and filters (Unix)
 - Xerox PARC, Smalltalk et la naissance du GUI (années 70-80)
+  - Alto (1973), métaphore du bureau, souris (Engelbart, 1968)
+  - Smalltalk (Alan Kay), MVC (Reenskaug, 1979), renvoi vers la section architecture
+  - Macintosh (1984), Windows (1985/1990)
 - Le modèle événementiel : de la boucle d'événements aux callbacks
-- MVC (Reenskaug, 1979) : origine dans Smalltalk, renvoi vers la section architecture
-- Visual Basic (1991) : démocratisation du développement GUI par drag-and-drop
-- Les toolkits desktop : Tk, Qt, GTK, Win32, Cocoa
+  - Inversion du contrôle, exemple comparé CLI vs Tkinter en Python
+- Visual Basic (1991) : démocratisation du développement GUI par drag-and-drop (RAD)
+- Les toolkits desktop : Tk, Win32/MFC, Cocoa, GTK, Java AWT/Swing, Qt
+  - Tension multiplateforme : Java "write once, run anywhere" vs Qt code natif
 - Flash/ActionScript (Macromedia, puis Adobe) : le web interactif avant HTML5, mort annoncée par Steve Jobs (2010)
-- Le web comme plateforme UI : du document statique à l'application
+- Web 2.0 (Tim O'Reilly, 2004) : AJAX, Google Maps, le web comme média de participation
+- Le web comme plateforme UI : HTML/CSS/JS, avantage du déploiement, migration des applications desktop vers le web
 
 ### L'architecture des applications web
 - Le modèle traditionnel : rendu côté serveur (SSR), pages complètes, formulaires
