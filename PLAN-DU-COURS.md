@@ -181,7 +181,7 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Lien avec DRY : le schéma comme source unique de vérité
 - Lien avec la section sur les schémas (module 3, données)
 
-## Les interfaces utilisateur (en cours)
+## Les interfaces utilisateur (complété)
 
 ### Perspective historique (complété)
 - Les terminaux texte et les interfaces en ligne de commande (CLI)
@@ -207,26 +207,28 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Le retour du SSR et les approches hybrides : hydration, meta-frameworks (Next.js, Nuxt, SvelteKit)
 - Static Site Generation (SSG) et Jamstack : Hugo, Jekyll, Gatsby, Astro, CDN
 
-### Les frameworks JavaScript
-- Le DOM (Document Object Model) : qu'est-ce que c'est, pourquoi c'est important
-- La tension déclaratif vs impératif comme fil conducteur : HTML (déclaratif) → jQuery (impératif, manipulation directe du DOM) → React (retour au déclaratif avec JSX)
-- jQuery (2006) : simplification du DOM, uniformisation des navigateurs
-- Angular (2010/2016) : framework complet, two-way data binding, TypeScript
-- React (2013, Facebook) : DOM virtuel, composants, flux de données unidirectionnel, JSX
-- Vue.js (2014, Evan You) : approche progressive, réactivité, templates
-- Svelte (2016, Rich Harris) : compilation, disparition du framework au runtime
-- Concepts transversaux : composants, état (state management), réactivité, routing côté client
+### Les frameworks JavaScript (complété)
+- Le DOM (Document Object Model) : représentation vivante de la page, API de manipulation
+- La tension déclaratif vs impératif comme fil conducteur
+- jQuery (2006, John Resig) : simplification du DOM, uniformisation des navigateurs, spaghetti jQuery
+- Angular (2010 AngularJS / 2016 Angular) : framework complet, two-way data binding, TypeScript, opinionné
+- React (2013, Facebook) : DOM virtuel, composants fonctionnels, hooks, JSX, Separation of Concerns revisitée
+  - Composants : concept universel du UI, correspondance OOP naturelle, approche fonctionnelle de React
+- Vue.js (2014, Evan You) : approche progressive, réactivité par observables, templates avec directives
+- Svelte (2016, Rich Harris) : compilation, disparition du framework au runtime, SvelteKit
+- Préoccupations transversales : state management (Redux, Pinia, stores), routing côté client, meta-frameworks
 
-### Desktop, web et mobile : tensions et convergences
+### Desktop, web et mobile : tensions et convergences (complété)
 - Applications desktop natives : performance, accès système, distribution complexe
-- Applications web : universalité, déploiement instantané, limitations (accès hardware)
-- Applications mobiles natives (iOS/Swift, Android/Kotlin) : écosystèmes fermés, app stores
-- Approches cross-platform : React Native, Flutter (Dart), .NET MAUI
-- Progressive Web Apps (PWA) : service workers, installation, mode hors-ligne
-- Responsive design et l'adaptation aux formats d'écran
-- Electron et Tauri : le web comme runtime desktop
-- WebAssembly (WASM) : exécuter du C++/Rust dans le navigateur, brouillage de la frontière web/natif
-- Pattern BFF (Backend For Frontend, Sam Newman) : un backend adapté par type de client
+- Applications mobiles natives (iOS/Swift, Android/Kotlin) : écosystèmes fermés, app stores, commission 30%
+  - Langages et toolkits : Objective-C/Swift/UIKit/SwiftUI, Java/Kotlin/Android SDK/Jetpack Compose
+  - Conventions de design : Human Interface Guidelines (Apple), Material Design (Google)
+- Responsive web design (Ethan Marcotte, 2010, *A List Apart*) : media queries CSS, adaptation dynamique
+- Frameworks cross-platform : React Native (2015), Flutter (2018, Dart, Skia/Impeller), .NET MAUI, Kotlin Multiplatform
+- Progressive Web Apps (PWA, Google 2015) : service workers, manifeste, mode hors-ligne, résistance d'Apple
+- Electron (GitHub, 2014) : Chromium embarqué, VS Code/Slack/Discord, consommation mémoire
+- Tauri (2022) : WebView natif, backend Rust, alternative légère à Electron
+- WebAssembly (WASM, W3C 2017) : code compilé dans le navigateur, Figma, Google Earth
 - La tension fondamentale : write once run anywhere vs expérience native optimale
 
 ## Les données (en cours)
