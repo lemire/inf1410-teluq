@@ -200,12 +200,12 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Web 2.0 (Tim O'Reilly, 2004) : AJAX, Google Maps, le web comme média de participation
 - Le web comme plateforme UI : HTML/CSS/JS, avantage du déploiement, migration des applications desktop vers le web
 
-### L'architecture des applications web
-- Le modèle traditionnel : rendu côté serveur (SSR), pages complètes, formulaires
-- AJAX (2005) et le tournant vers l'interactivité sans rechargement
-- Single Page Application (SPA) : principe, avantages, inconvénients
-- Le retour du SSR : Next.js, Nuxt, SvelteKit, approches hybrides (SSR + hydration)
-- Static Site Generation (SSG) et sites Jamstack
+### L'architecture des applications web (complété)
+- Le modèle traditionnel : rendu côté serveur (SSR), pages complètes, formulaires (PHP, Django, Rails)
+- AJAX : le navigateur devient un acteur, tension client/serveur
+- Single Page Application (SPA) : principe, avantages, inconvénients, renvoi vers les frameworks JS
+- Le retour du SSR et les approches hybrides : hydration, meta-frameworks (Next.js, Nuxt, SvelteKit)
+- Static Site Generation (SSG) et Jamstack : Hugo, Jekyll, Gatsby, Astro, CDN
 
 ### Les frameworks JavaScript
 - Le DOM (Document Object Model) : qu'est-ce que c'est, pourquoi c'est important
