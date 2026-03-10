@@ -151,11 +151,35 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Pipes and filters (philosophie Unix, lien avec KWIC)
   - Architecture événementielle (event-driven, Kafka, RabbitMQ)
 
-## Les APIs (à développer)
-- L’API comme interface entre composants
-- REST, GraphQL, gRPC
-- Design d’API
-- Lien avec les schémas (JSON Schema, OpenAPI, Protobuf)
+## Les APIs (complété)
+
+### L’API comme concept évolutif
+- L’API au sens originel : l’interface d’une bibliothèque (fonctions qu’on appelle dans son propre code)
+- Le virage réseau : l’API comme contrat entre systèmes distribués (introduction du réseau, latence, pannes, sérialisation)
+- L’API comme produit : Stripe, Twilio, etc. Documentation, versioning, SLAs. L’économie de l’API.
+
+### Les paradigmes d’APIs réseau
+- RPC (Remote Procedure Call) : faire semblant que l’appel réseau est un appel de fonction
+  - CORBA, XML-RPC, SOAP
+  - Les fallacies of distributed computing (Peter Deutsch, 1994) : pourquoi l’illusion du RPC transparent est dangereuse
+- REST (Roy Fielding, thèse de doctorat, 2000) : rupture conceptuelle, manipulation de ressources
+  - HTTP comme protocole applicatif (verbes, codes de statut, headers)
+  - Richardson Maturity Model (niveaux 0-3)
+  - HATEOAS : la vision originale de Fielding vs la pratique (billet de 2008)
+  - Exemple concret : API FastAPI avec curl
+- GraphQL (Facebook, 2015) : le client décide de la forme des données
+  - Problème du over-fetching/under-fetching
+  - Comparaison SQL vs GraphQL (niveaux différents de l'architecture)
+  - Schéma introspectable comme alternative à HATEOAS pour la découvrabilité
+  - Exemple concret : serveur Strawberry avec curl
+- gRPC (Google, 2015) : retour au RPC avec les leçons apprises (Protobuf, HTTP/2, streaming)
+- Webhooks : l’inversion du modèle requête-réponse (lien avec l’architecture événementielle)
+
+### Design d’API et schémas
+- Principes de design : nommage, versioning, gestion des erreurs, idempotence
+- Schémas comme contrat : OpenAPI/Swagger (REST), fichiers .proto (gRPC), schéma introspectable (GraphQL)
+- Lien avec DRY : le schéma comme source unique de vérité
+- Lien avec la section sur les schémas (module 3, données)
 
 ## Les interfaces utilisateur (à développer)
 
@@ -237,6 +261,8 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 
 - Cloud
 - DevOps
+- The Twelve-Factor App (Adam Wiggins, Heroku, 2011) : méthodologie pour concevoir des applications cloud-native
+  - Liens avec les modules précédents (dépendances, CI, architecture, APIs)
 - Observabilité
 - Monitoring
 - Logging

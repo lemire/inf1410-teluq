@@ -46,3 +46,15 @@ intégrées dans le cours.)*
   la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
 - Martin Fowler, *Continuous Integration* (2006) : article de référence sur
   l'intégration continue → [Module 2, L'intégration continue]({{< ref "/docs/module2/50-ci" >}})
+- Roy Fielding, *Architectural Styles and the Design of Network-based Software
+  Architectures* (thèse de doctorat, 2000) : définition de REST →
+  [Module 3, Les APIs]({{< ref "/docs/module3/apis" >}})
+- Roy Fielding, *REST APIs must be hypertext-driven* (billet de blog, 2008) :
+  critique des APIs « REST » qui n'implémentent pas HATEOAS →
+  [Module 3, Les APIs]({{< ref "/docs/module3/apis" >}})
+- Peter Deutsch et al., *Fallacies of Distributed Computing* (1994) : huit
+  hypothèses fausses sur les systèmes distribués →
+  [Module 3, Les APIs]({{< ref "/docs/module3/apis" >}})
+- Leonard Richardson, *Richardson Maturity Model* : classification des APIs
+  REST en quatre niveaux de maturité →
+  [Module 3, Les APIs]({{< ref "/docs/module3/apis" >}})

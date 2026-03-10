@@ -28,6 +28,7 @@ développés dans leurs sections respectives.)*
 - **Composition over inheritance** (Gang of Four, *Design Patterns*, 1994) : favoriser l'assemblage d'objets plutôt que l'héritage de classes → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - **Loi de Conway** (Melvin Conway, 1967) : la structure d'un système reflète la structure de communication de l'organisation qui le produit → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - **Principle of Least Astonishment (POLA)**
+- **Idempotence** : une opération qu'on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → [Module 3, Les APIs]({{< ref "/docs/module3/apis" >}})
 
 ## Principes de pratique
 
